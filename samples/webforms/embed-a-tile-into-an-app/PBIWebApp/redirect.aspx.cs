@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace PBIWebApp
 {
- /* NOTE: This sample is to illustrate how to authenticate a Power BI web app. 
- * In a production application, you should provide appropriate exception handling and refactor authentication settings into 
- * a configuration. Authentication settings are hard-coded in the sample to make it easier to follow the flow of authentication. */
+    /* NOTE: This sample is to illustrate how to authenticate a Power BI web app. 
+    * In a production application, you should provide appropriate exception handling and refactor authentication settings into 
+    * a configuration. Authentication settings are hard-coded in the sample to make it easier to follow the flow of authentication. */
 
+    //MyClientSecret (Microsoft/PowerBiStephe : i2tUvBeZPc4UUPiZx78nA2bxfHrJ1W61HB0aF1FZMiY=
     public partial class Redirect : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

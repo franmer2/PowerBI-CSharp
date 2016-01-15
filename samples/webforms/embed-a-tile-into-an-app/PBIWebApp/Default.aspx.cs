@@ -10,14 +10,20 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Collections.Specialized;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace PBIWebApp
 {
-     /* NOTE: This sample is to illustrate how to authenticate a Power BI web app. 
-     * In a production application, you should provide appropriate exception handling and refactor authentication settings into 
-     * a secure configuration. Authentication settings are hard-coded in the sample to make it easier to follow the flow of authentication. */
+    
+
+    /* NOTE: This sample is to illustrate how to authenticate a Power BI web app. 
+    * In a production application, you should provide appropriate exception handling and refactor authentication settings into 
+    * a secure configuration. Authentication settings are hard-coded in the sample to make it easier to follow the flow of authentication. */
     public partial class _Default : Page
     {
+        // HARDCODED bearer for tests
+        string bearer = "eyJ0-XXXXXXX-XXXXXX-XXXXXXX-BT5Q";
+
         string baseUri = "https://api.powerbi.com/beta/myorg/";
 
         public AuthenticationResult authResult { get; set; }
@@ -74,6 +80,8 @@ namespace PBIWebApp
             Response.Redirect(String.Format("{0}?{1}", authorityUri, queryString));       
         }
 
+        
+
         protected void getGroupsButton_Click(object sender, EventArgs e)
         {
             string responseContent = string.Empty;
@@ -82,8 +90,8 @@ namespace PBIWebApp
             System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}groups", baseUri)) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
-            request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
-
+            AddBearer(request);
+             
             //Get datasets response from request.GetResponse()
             using (var response = request.GetResponse() as System.Net.HttpWebResponse)
             {
@@ -105,6 +113,19 @@ namespace PBIWebApp
             }
         }
 
+        private void AddBearer(WebRequest request)
+        {
+            if (authResult == null)
+            {
+                request.Headers.Add("Authorization", String.Format("Bearer {0}", bearer));
+            }
+            else
+            {
+                request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
+            }
+
+        }
+
         protected void getDatasetsButton_Click(object sender, EventArgs e)
         {
             string responseContent = string.Empty;
@@ -113,7 +134,7 @@ namespace PBIWebApp
             System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}datasets", baseUri)) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
-            request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
+            AddBearer(request);
 
             //Get datasets response from request.GetResponse()
             using (var response = request.GetResponse() as System.Net.HttpWebResponse)
@@ -145,7 +166,7 @@ namespace PBIWebApp
             System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}dashboards", baseUri)) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
-            request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
+            AddBearer(request);
 
             //Get datasets response from request.GetResponse()
             using (var response = request.GetResponse() as System.Net.HttpWebResponse)
@@ -186,7 +207,7 @@ namespace PBIWebApp
             System.Net.WebRequest request = System.Net.WebRequest.Create(String.Format("{0}Dashboards/{1}/Tiles", baseUri, dashboardId)) as System.Net.HttpWebRequest;
             request.Method = "GET";
             request.ContentLength = 0;
-            request.Headers.Add("Authorization", String.Format("Bearer {0}", authResult.AccessToken));
+            AddBearer(request);
 
             //Get datasets response from request.GetResponse()
             using (var response = request.GetResponse() as System.Net.HttpWebResponse)

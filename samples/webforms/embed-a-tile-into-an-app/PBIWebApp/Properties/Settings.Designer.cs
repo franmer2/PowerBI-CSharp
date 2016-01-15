@@ -25,7 +25,7 @@ namespace PBIWebApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("61e6c668-f850-4b97-8e35-025c35d9da6f")]
         public string ClientID {
             get {
                 return ((string)(this["ClientID"]));
@@ -34,10 +34,28 @@ namespace PBIWebApp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("i2tUvBeZPc4UUPiZx78nA2bxfHrJ1W61HB0aF1FZMiY=")]
         public string ClientSecret {
             get {
                 return ((string)(this["ClientSecret"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("61e6c668-f850-4b97-8e35-025c35d9da6f")]
+        public string StepheClientIDReminder {
+            get {
+                return ((string)(this["StepheClientIDReminder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("i2tUvBeZPc4UUPiZx78nA2bxfHrJ1W61HB0aF1FZMiY=")]
+        public string StepheClientSecret {
+            get {
+                return ((string)(this["StepheClientSecret"]));
             }
         }
     }
